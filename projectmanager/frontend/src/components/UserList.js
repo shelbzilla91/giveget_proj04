@@ -8,27 +8,11 @@ const BaseStyles = styled.div`
     display:flex;
     flex-direction:row;
     text-align: center;
-`
-const Container = styled.div`
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    text-align: center;
-    border: 5px solid blue;
+    background-color: green;
     width:100vw;
-    
-    
+    height:50vh;
 `
-const UserImg = styled.img`
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-    width: 45vw;
-    border:5px solid blue;
-    margin:10px;
-    padding:10px;
-`
+
 
 
 class UserList extends Component {
@@ -52,27 +36,8 @@ class UserList extends Component {
     render() {
         return (
             <BaseStyles>
-            <Container>
-                
-                {this.state.users.map((user, i) => (
-                <div key={i}>
-               
-                <UserImg src={user.img} alt="..."/>
-                <div className="card-body">
-              
-                <div className="card-title text-justify">
-                <h5>{user.name}</h5>
-                <h5>{user.username}</h5>
-                <h3>{user.email}</h3>
-                 </div> 
-                 </div>       
-              
-                <Link to={`/users/${user._id}`}className="btn btn-primary ">Check their Tunes</Link>
-                     
-                </div>
-                ))}
-                 </Container>
-                <SideBar>
+     
+             
                     <div>
                     {this.state.addUserFormVisible ? <AddUserForm
                     getUsers={this.getUsers}
@@ -80,9 +45,10 @@ class UserList extends Component {
                     /> : null}
                     <button className="btn btn-primary" onClick={this.toggleAddUserForm}>Create new user</button>
                     </div>
-                </SideBar>
+                
                
             </BaseStyles>
+            
             
         );
     }
