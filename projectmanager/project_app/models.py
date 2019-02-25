@@ -9,8 +9,14 @@ class Center (models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField (max_length=200)
 
-class List (models.Model):
+class Item (models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
+    genre = models.CharField(max_length=100)
+    userId = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='items')
+    centerId = models.ForeignKey(
+        Center, on_delete=models.CASCADE, related_name="items")
+    itemVoteCount = models.IntegerField()
+
 
 
