@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import AddUserForm from './AddUserForm'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
-const BaseStyles = styled.div`
-    display:flex;
-    flex-direction:row;
-    text-align: center;
-    background-color: green;
-    width:100vw;
-    height:50vh;
-`
-
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 
 class UserList extends Component {
@@ -35,23 +25,15 @@ class UserList extends Component {
     }
     render() {
         return (
-            <BaseStyles>
-     
-             
-                    <div>
-                    {this.state.addUserFormVisible ? <AddUserForm
-                    getUsers={this.getUsers}
-                    toggleAddUserForm={this.toggleAddUserForm}
-                    /> : null}
-                    <button className="btn btn-primary" onClick={this.toggleAddUserForm}>Create new user</button>
-                    </div>
-                
-               
-            </BaseStyles>
-            
-            
-        );
-    }
+    <ListGroup>
+        <ListGroupItem>Cras justo odio</ListGroupItem>
+        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
+        <ListGroupItem>Morbi leo risus</ListGroupItem>
+        <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
+        <ListGroupItem>Vestibulum at eros</ListGroupItem>
+      </ListGroup>
+    );
+  }
 }
 
 export default UserList;

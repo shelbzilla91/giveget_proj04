@@ -11,13 +11,18 @@ class Center (models.Model):
     location = models.CharField (max_length=200)
   
 
-class List (models.Model):
+class UserList (models.Model):
     name = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     userId = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='lists')
+    itemCount = models.IntegerField()
+
+class CenterList (models.Model):
+    name = models.CharField(max_length=100)
+    genre = models.CharField(max_length=100)
     centerId = models.ForeignKey(
-        Center, on_delete=models.CASCADE, related_name="lists")
+        Center, on_delete=models.CASCADE, related_name='lists')
     itemCount = models.IntegerField()
 
 
