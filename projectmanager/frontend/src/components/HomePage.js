@@ -30,29 +30,21 @@ height:20vh;
 class HomePage extends Component {
     state = {
         Center: [{
-            name: "Goodwill",
-            location: "Midtown",
+            name: "",
+            location: "",
             itemCount: 3,
-            centerList: [{
-                genre: "food",
-                title: "pasta",
-                itemCount: 3,
-            }]
+            centerList: []
         }],
         User: [{
             name: "Shelby",
             email: "shelbgatozillatron@gmail.com",
-            userList: [{
-                genre: "clothes",
-                name: "pasta",
-                itemCount: 3
-            }]
+            userList: []
         }]
     };
 
 
     updateCenterList = f => {
-        let oldList = [...this.state.centerList];
+        let oldList = [...this.state.center.centerList];
         f(oldList).then(updatedPosts => {
             this.setState({ postList: updatedPosts });
         });
@@ -60,6 +52,16 @@ class HomePage extends Component {
 
 
     render() {
+
+        const users = this.state.User.map((user, i) => {
+            return (
+                <div key={i}>
+                    {user.name}
+                </div>
+            )
+        })
+
+
         return (
 
             <div>
@@ -72,18 +74,8 @@ class HomePage extends Component {
                 </Header>
                 <CentersPage />
                 <SingleUserPage updateUser={this.updateUser} user={this.state.User} />
-                {/* <h1>{this.state.User.name}</h1> */}
-                {this.state.User.map((user, i) => {
-                    return (
-                        <div key={i}>
-                            {user.name}
-                        </div>
-
-                    )
-                })}
-
-
-
+                <h1>{this.state.User.name}</h1>
+                {users}
             </div>
 
 

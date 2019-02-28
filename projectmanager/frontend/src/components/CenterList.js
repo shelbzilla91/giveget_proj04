@@ -4,7 +4,8 @@ import axios from 'axios'
 import AddListForm from './AddListForm';
 
 class CenterList extends Component {
-    state = {
+    state = 
+    {
         name:"",
         genre:"",
         itemcount:""
