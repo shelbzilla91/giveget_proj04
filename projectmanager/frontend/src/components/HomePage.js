@@ -8,7 +8,8 @@ import CenterList from './CenterList'
 import CentersPage from './CentersPage'
 import AddListForm from './AddListForm'
 
-const WreckingBall = styled.img`
+
+const HeaderImg = styled.img`
             width: 200px;
             height:200px;
             align-items:right;
@@ -51,60 +52,38 @@ class HomePage extends Component {
 
 
     updateCenterList = f => {
-        let oldPosts = [...this.state.centerList];
-        f(oldPosts).then(updatedPosts => {
+        let oldList = [...this.state.centerList];
+        f(oldList).then(updatedPosts => {
             this.setState({ postList: updatedPosts });
         });
     }
-
-    updateUser = f => {
-        let currentUser = { ...this.state.User };
-        f(currentUser).then(updatedUser => {
-            this.setState({ currentUser: updatedUser });
-        });
-    }
-    getUsers = () => {
-        axios.get(`http://localhost:8000/api/users/`)
-        .then((res) => this.setState({ User: res.data }))
-    }
-
-    componentDidMount() {
-        this.getUsers();
-     
-    }
-
-    
 
 
     render() {
         return (
 
             <div>
-          
-                    <span className="badge badge-pill badge-primary"><h1>Give and Get</h1></span>
-                    <Header>
-                       
-                        <WreckingBall src="" alt="..." />
-                        }
+                <Navbar />
 
-                    
-                        <h1>Giving what is Needed</h1>
-                    
-                        <CentersPage/>
-                    </Header>
-               
+
+                <Header>
+
+                <HeaderImg src="" alt="..." />
+                </Header>
+                <CentersPage />
                 <SingleUserPage updateUser={this.updateUser} user={this.state.User} />
                 {/* <h1>{this.state.User.name}</h1> */}
-                {this.state.User.map((user,i)=> {
-                    return(
-                    <div key = {i}>
-                    {user.name}
-                    </div>
-                    
-                    )}) }
-                
-        
-              
+                {this.state.User.map((user, i) => {
+                    return (
+                        <div key={i}>
+                            {user.name}
+                        </div>
+
+                    )
+                })}
+
+
+
             </div>
 
 

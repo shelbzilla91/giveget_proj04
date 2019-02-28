@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { ListGroup, ListGroupItem } from 'reactstrap';
 import AddUserForm from './AddUserForm'
 
 
@@ -44,7 +43,7 @@ class UserList extends Component {
     }
 
     getUsers = () => {
-        axios.get(`/api/users`)
+        axios.get(`/api/users/${this.props.match.params.id}/`)
             .then((res) => this.setState({ users: res.data }))
     }
 
@@ -66,12 +65,11 @@ class UserList extends Component {
 
                                 <div className="card-title text-justify">
                                     <h5>{user.name}</h5>
-                                    <h5>{user.username}</h5>
                                     <h3>{user.email}</h3>
                                 </div>
                             </div>
 
-                            <Link to={`/users/${user._id}`} className="btn btn-primary ">Check their Tunes</Link>
+                            <Link to={`/users/${user._id}`} className="btn btn-primary ">Profile</Link>
 
                         </div>
                     ))}
