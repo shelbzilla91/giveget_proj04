@@ -6,10 +6,10 @@ from .api import CenterListViewSet
 from .api import UserListViewSet
 
 router = routers.DefaultRouter()
-router.register('api/users', UserViewSet, 'users')
+router.register('api/users/:userId', UserViewSet, 'users')
 router.register('api/centers', CenterViewSet, 'centers')
-router.register('api/centerlist', CenterListViewSet, 'centerlists')
-router.register('api/userlist', UserListViewSet, 'lists')
+router.register('api/centers/id/centerlist', CenterListViewSet, 'centerlists')
+router.register('api/users/:userId/userlist', UserListViewSet, 'lists')
 
 
 urlpatterns = router.urls

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import axios from 'axios'
+import AddListForm from './AddListForm';
 
 class CenterList extends Component {
     state = {
-        data: ''
+        name:"",
+        genre:"",
+        itemcount:""
+
     }
     getCenterList = () => {
         axios.get(`/api/centerlist`)
@@ -19,11 +23,12 @@ class CenterList extends Component {
             <div>
                 <button onClick={this.getCenterList}>Test</button>
     <ListGroup>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Morbi leo risus</ListGroupItem>
+        <ListGroupItem></ListGroupItem>
+        <ListGroupItem></ListGroupItem>
         <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
         <ListGroupItem>Vestibulum at eros</ListGroupItem>
     </ListGroup> 
+    <AddListForm />
             </div>
         );
     }

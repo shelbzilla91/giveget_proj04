@@ -10,7 +10,7 @@ class UserListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
-    userlists = UserListSerializer(many=True)
+    userlists = UserListSerializer(many=True, read_only =True)
     class Meta:
         model = User
         fields = '__all__'

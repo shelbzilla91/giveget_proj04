@@ -3,7 +3,35 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import AddUserForm from './AddUserForm'
 
+
+
+const BaseStyles = styled.div`
+    display:flex;
+    flex-direction:row;
+    text-align: center;
+`
+const Container = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align: center;
+    border: 5px solid blue;
+    width:100vw;
+    
+    
+`
+const UserImg = styled.img`
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    width: 45vw;
+    border:5px solid blue;
+    margin:10px;
+    padding:10px;
+`
 
 class UserList extends Component {
     state = {
@@ -17,23 +45,50 @@ class UserList extends Component {
 
     getUsers = () => {
         axios.get(`/api/users`)
-        .then((res) => this.setState({ users: res.data }))
+            .then((res) => this.setState({ users: res.data }))
     }
 
     toggleAddUserForm = () => {
         this.setState({ addUserFormVisible: !this.state.addUserFormVisible })
     }
+
     render() {
         return (
-    <ListGroup>
-        <ListGroupItem>Cras justo odio</ListGroupItem>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Morbi leo risus</ListGroupItem>
-        <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-        <ListGroupItem>Vestibulum at eros</ListGroupItem>
-      </ListGroup>
-    );
-  }
+
+            <BaseStyles>
+                <Container>
+
+                    {this.state.users.map((user, i) => (
+                        <div key={i}>
+
+                            <UserImg src={user.img} alt="..." />
+                            <div className="card-body">
+
+                                <div className="card-title text-justify">
+                                    <h5>{user.name}</h5>
+                                    <h5>{user.username}</h5>
+                                    <h3>{user.email}</h3>
+                                </div>
+                            </div>
+
+                            <Link to={`/users/${user._id}`} className="btn btn-primary ">Check their Tunes</Link>
+
+                        </div>
+                    ))}
+                </Container>
+           
+                    <div>
+                        {this.state.addUserFormVisible ? <AddUserForm
+                            getUsers={this.getUsers}
+                            toggleAddUserForm={this.toggleAddUserForm}
+                        /> : null}
+                        <button className="btn btn-primary" onClick={this.toggleAddUserForm}>Create new user</button>
+                    </div>
+
+            </BaseStyles>
+
+        );
+    }
 }
 
 export default UserList;

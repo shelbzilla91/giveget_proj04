@@ -4,10 +4,9 @@ import axios from 'axios'
 class AddUserForm extends Component {
     state = {
         user: {
-            username: '',
-            password: '',
+            name: '',
             email:'',
-            img:''
+          
         }
     }
 
@@ -34,8 +33,8 @@ class AddUserForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <input type="text"
-                        placeholder="Username"
-                        name="username"
+                        placeholder="name"
+                        name="name"
                         value={this.state.user.username}
                         onChange={this.handleChange}
                         />

@@ -9,7 +9,7 @@ class User (models.Model):
 class Center (models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField (max_length=200)
-  
+
 
 class UserList (models.Model):
     name = models.CharField(max_length=100)

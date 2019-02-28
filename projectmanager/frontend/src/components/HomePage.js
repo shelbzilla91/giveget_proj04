@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import UserList from './UserList';
+import React, { Component } from 'react'
+import UserList from './UserList'
+import axios from 'axios'
+import SingleUserPage from './SingleUserPage'
 import styled from 'styled-components'
-// import Slide from 'react-reveal/Slide';
-// import Bounce from 'react-reveal/Bounce';
 import Navbar from './Navbar'
-import CenterList from './CenterList';
+import CenterList from './CenterList'
+import CentersPage from './CentersPage'
+import AddListForm from './AddListForm'
 
 const WreckingBall = styled.img`
             width: 200px;
@@ -16,14 +18,7 @@ background: linear-gradient(to left, #2193b0, #6dd5ed);
 color:white;
 
 `
-const HeaderImg = styled.div`
-display:flex;
-flex-direction:row;
-align-items:left;
-background-image: url("https://images.unsplash.com/photo-1535103729436-130b3c44f422?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
-background-size:contain;
-background-repeat:no-repeat;
-`
+
 const Header = styled.div`
 display:flex;
 flex-direction:flex-end;
@@ -43,16 +38,15 @@ class HomePage extends Component {
                 itemCount: 3,
             }]
         }],
-        User: {
-            name: "",
-            email: "",
-            profilePic: "",
+        User: [{
+            name: "Shelby",
+            email: "shelbgatozillatron@gmail.com",
             userList: [{
                 genre: "clothes",
                 name: "pasta",
                 itemCount: 3
             }]
-        }
+        }]
     };
 
 
@@ -64,39 +58,53 @@ class HomePage extends Component {
     }
 
     updateUser = f => {
-        let currentUser = { ...this.state.currentUser };
+        let currentUser = { ...this.state.User };
         f(currentUser).then(updatedUser => {
             this.setState({ currentUser: updatedUser });
         });
     }
+    getUsers = () => {
+        axios.get(`http://localhost:8000/api/users/`)
+        .then((res) => this.setState({ User: res.data }))
+    }
 
     componentDidMount() {
-        this.getAllPosts();
-        this.getCurrentUser();
+        this.getUsers();
+     
     }
 
-    }
+    
 
 
     render() {
         return (
 
             <div>
-                <HeaderImg>
-                    <span class="badge badge-pill badge-primary"><h1>Give and Get</h1></span>
+          
+                    <span className="badge badge-pill badge-primary"><h1>Give and Get</h1></span>
                     <Header>
-                        {/* <Slide right> */}
-                        <WreckingBall src="https://cdn1.iconfinder.com/data/icons/banking-glyph/614/970_-_Charity-512.png" alt="..." />
-                        {/* </Slide> */}
+                       
+                        <WreckingBall src="" alt="..." />
+                        }
 
-                        {/* <Bounce right> */}
+                    
                         <h1>Giving what is Needed</h1>
-                        {/* </Bounce> */}
-                        <CenterList />
+                    
+                        <CentersPage/>
                     </Header>
-                </HeaderImg>
-                <Navbar />
-
+               
+                <SingleUserPage updateUser={this.updateUser} user={this.state.User} />
+                {/* <h1>{this.state.User.name}</h1> */}
+                {this.state.User.map((user,i)=> {
+                    return(
+                    <div key = {i}>
+                    {user.name}
+                    </div>
+                    
+                    )}) }
+                
+        
+              
             </div>
 
 
