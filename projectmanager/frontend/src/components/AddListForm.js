@@ -3,38 +3,32 @@ import axios from 'axios'
 
 class AddListForm extends Component {
     state = {
-        CenterList: {
-            name:"",
-            genre:"",
-            itemCount:"",
-            centerId: ""
-        }
-           
-        
-    }
-    getCenterList = async () => {
-        const res = await axios.get(`/api/centerlist/`)
-        console.log(res.data)
-        this.setState({CenterList: res.data})
-        console.log(this.state.CenterList)
+        centerlist: [],
+        addCenterList:false
+        }  
+   
     }
     
-
     handleChange = (event) => {
-        const newState = { ...this.state.CenterList }
+        const newState = { ...this.state.centerlist }
         newState[event.target.name] = event.target.value
-        this.setState({ CenterList: newState })
-        
+        this.setState({ centerlist: newState })
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const result = this.state.CenterList
-        axios.post(`http://localhost:8000/api/centers/`, result)
+        const result = this.state.centerlist
+        axios.post(`/api/centers/`, result)
         .then((res) => {
-            this.getCenterList()
-        })
+            this.props.getCenterList()
+            this.props.toggleAddCenterForm()
+        
+        });
     }
+
+
+   
+    
     render() {
    
         return (
@@ -45,31 +39,25 @@ class AddListForm extends Component {
                         <input type="text"
                         placeholder="item"
                         name="name"
-                        value={this.state.name}
+                        value={this.state.centerlist.name}
                         onChange={this.handleChange}
                         />
                     </div>
                     <div>
                         <input type="text"
                         placeholder="genre"
-                        value={this.state.genre}
+                        value={this.state.centerlist.genre}
                         onChange={this.handleChange}
                         name="genre"/>
                     </div>
                     <div>
                         <input type="text"
                         placeholder="How many"
-                        value={this.state.itemCount}
+                        value={this.state.centerlist.itemCount}
                         onChange={this.handleChange}
                         name="itemcount"/>
                     </div>
-                    <div>
-                        <input type="text"
-                        placeholder="center id"
-                        value={this.state.centerId}
-                        onChange={this.handleChange}
-                        name="centerId"/>
-                    </div>
+                    
                     <button type="submit" onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>

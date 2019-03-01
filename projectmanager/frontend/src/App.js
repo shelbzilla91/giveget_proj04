@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import HomePage from './components/HomePage'
 import UserList from './components/UserList';
-import SingleUserPage from './components/SingleUserPage';
+import SingleUserPage from './components/AddSingleUser';
 
 
 class App extends Component {
@@ -13,8 +13,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/api/users" component={UserList} />
-            <Route exact path="api/users/:userId" component={SingleUserPage}/>
+            <Route exact path="/users" component={UserList} />
+            <Route exact path="/users/:userId" component={SingleUserPage}/>
           </Switch>
         </Router>
       </div>

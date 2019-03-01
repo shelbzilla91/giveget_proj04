@@ -12,7 +12,7 @@ class Navbar extends Component {
                         <NavLink href="/api/centers">Centers</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="#">Profile</NavLink>
+                        <NavLink href="/api/users">Profile</NavLink>
                     </NavItem>
                 </Nav>
             </div>

@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-class AddUserEdit extends Component {
+class SingleUserPage extends Component {
     state = {
         user: {
-            name: '',
-            email:'',
-            
+            username: '',
+            email:''
         }
-    }
-    updateUser = f => {
-        let currentUser = { ...this.state.User };
-        f(currentUser).then(updatedUser => {
-            this.setState({ currentUser: updatedUser });
-        });
-    }
-    getUsers = () => {
-        axios.get(`/api/users/${this.props.match.params.id}/`)
-            .then((res) => this.setState({ users: res.data }))
     }
 
     handleChange = (event) => {
@@ -27,46 +18,42 @@ class AddUserEdit extends Component {
     }
 
     handleSubmit = (event) => {
-    const userId= this.props.userId
         event.preventDefault()
         const result = this.state.user
-        axios.patch(`/users/${userId}`, result)
+        axios.post('/api/users', result)
         .then((res) => {
             this.props.getUsers()
-            this.props.history.push(`/users/${userId}`) 
+            this.props.toggleAddUserForm()
         })
     }
-
-    
-    
-
     render() {
         return (
             <div>
-                <span class="badge badge-pill badge-primary"><h3>Edit User Page</h3></span>
+                <span class="badge badge-pill badge-primary"><h3>Join the Wrecker Squad</h3></span>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <input type="text"
-                        placeholder="name"
-                        name="name"
-                        value={this.state.user.name}
+                        placeholder="Username"
+                        name="username"
+                        value={this.state.user.username}
                         onChange={this.handleChange}
                         />
                     </div>
+                    
                     <div>
                         <input type="text"
-                        placeholder="email"
+                        placeholder="Email"
                         value={this.state.user.email}
                         onChange={this.handleChange}
                         name="email"/>
                     </div>
-    
-                    <button>EDIT</button>
                     
+                    <button>Submit</button>
                 </form>
             </div>
+            
         );
     }
 }
 
-export default AddUserEdit;
+export default SingleUserPage;

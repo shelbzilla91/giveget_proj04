@@ -6,7 +6,6 @@ class CentersPage extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
                 <CenterList/>
             </div>
         );

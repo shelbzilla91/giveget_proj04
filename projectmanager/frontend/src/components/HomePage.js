@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import UserList from './UserList'
 import axios from 'axios'
-import SingleUserPage from './SingleUserPage'
 import styled from 'styled-components'
 import Navbar from './Navbar'
 import CenterList from './CenterList'
@@ -29,34 +28,35 @@ height:20vh;
 
 class HomePage extends Component {
     state = {
-        Center: [{
-            name: "",
-            location: "",
-            itemCount: 3,
-            centerList: []
-        }],
-        User: [{
+        centers: [],
+        users: [{
             name: "Shelby",
             email: "shelbgatozillatron@gmail.com",
             userList: []
         }]
     };
-
-
-    updateCenterList = f => {
-        let oldList = [...this.state.center.centerList];
-        f(oldList).then(updatedPosts => {
-            this.setState({ postList: updatedPosts });
-        });
+    
+    componentDidMount() {
+        this.getCenters()
     }
+
+    getCenters = async () => {
+        const res = await 
+        axios.get(`/api/centers/`)
+        console.log(res.data)
+        this.setState({centers: res.data})
+    }
+
+
 
 
     render() {
 
-        const users = this.state.User.map((user, i) => {
+        const users = this.state.centers.map((center, i) => {
             return (
                 <div key={i}>
-                    {user.name}
+                    {center.location}
+                    {center.name}
                 </div>
             )
         })
@@ -73,8 +73,7 @@ class HomePage extends Component {
                 <HeaderImg src="" alt="..." />
                 </Header>
                 <CentersPage />
-                <SingleUserPage updateUser={this.updateUser} user={this.state.User} />
-                <h1>{this.state.User.name}</h1>
+                
                 {users}
             </div>
 
