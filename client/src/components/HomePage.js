@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import CenterList from './CenterList'
 import CentersPage from './CentersPage'
 import AddListForm from './AddListForm'
+import Gmap from './Gmap'
 
 
 const HeaderImg = styled.img`
@@ -69,6 +70,7 @@ class HomePage extends Component {
                 <HeaderImg src="" alt="..." />
                 </Header>
                 <CentersPage />
+                <Gmap/>
         
                 
             
