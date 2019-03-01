@@ -28,12 +28,8 @@ height:20vh;
 
 class HomePage extends Component {
     state = {
-        centers: [],
-        users: [{
-            name: "Shelby",
-            email: "shelbgatozillatron@gmail.com",
-            userList: []
-        }]
+        users: [],
+        
     };
     
     componentDidMount() {
@@ -52,11 +48,11 @@ class HomePage extends Component {
 
     render() {
 
-        const users = this.state.centers.map((center, i) => {
+        const users = this.state.users.map((user, i) => {
             return (
                 <div key={i}>
-                    {center.location}
-                    {center.name}
+                    {user.email}
+                    {user.name}
                 </div>
             )
         })
@@ -69,12 +65,12 @@ class HomePage extends Component {
 
 
                 <Header>
-
+                {users}
                 <HeaderImg src="" alt="..." />
                 </Header>
                 <CentersPage />
                 
-                {users}
+            
             </div>
 
 
