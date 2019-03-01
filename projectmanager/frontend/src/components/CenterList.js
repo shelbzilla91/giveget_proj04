@@ -16,19 +16,7 @@ width: 25vw;
 height:35vh;
 border:5px solid #4286f4;
 `
-const RecImg = styled.div `
-display: flex;
-flex-direction:row;
-justify-content:center;
-width:35vw;
-color: #4286f4;
-font-size: 1em;
-margin: 1em;
-padding: 0.25em 1em;
-border: 2px solid #4286f4;
-border-radius: 3px;
-display: block;
-`
+
 const Container = styled.div `
 display: flex;
 flex-direction:row;
@@ -38,16 +26,12 @@ width:100vw;
 height:40vh;
 background-color:#55DBD9;
 border: 5px solid #4286f4;
-
 `
 const centForm = styled.div `
-
 display:flex;
 flex-direction:row;
 justify-content:left;
 border: 5px solid #4286f4;
-
-
 `
 
 class CenterList extends Component {
@@ -86,8 +70,8 @@ class CenterList extends Component {
             <GeneralStyles>
                 <centForm>
                 <h1>Add Center</h1>
-                <button className="badge badge-pill badge-primary center" onClick={this.toggleAddRecordForm}>Add Center</button>
-                <button class="badge badge-pill badge-primary center" onClick={this.deleteRecord}>Delete Center</button>
+                <button className="badge badge-pill badge-primary center" onClick={this.toggleAddCenterForm}>Add Center</button>
+                <button class="badge badge-pill badge-primary center" onClick={this.deleteCenter}>Delete Center</button>
                 {this.state.addCenter ? <AddListForm
                     getCenters={this.getCenters}
                     toggleAddRecordForm={this.toggleAddCenterForm}

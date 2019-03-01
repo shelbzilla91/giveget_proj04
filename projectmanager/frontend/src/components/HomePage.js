@@ -69,6 +69,7 @@ class HomePage extends Component {
                 <HeaderImg src="" alt="..." />
                 </Header>
                 <CentersPage />
+        
                 
             
             </div>

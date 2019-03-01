@@ -16,7 +16,7 @@ class AddUserEdit extends Component {
         });
     }
     getUsers = () => {
-        axios.get(`/api/users/${this.props.match.params.id}/`)
+        axios.get(`/api/users/${this.props.user.id}/`)
             .then((res) => this.setState({ users: res.data }))
     }
 
@@ -30,10 +30,10 @@ class AddUserEdit extends Component {
     const userId= this.props.userId
         event.preventDefault()
         const result = this.state.user
-        axios.patch(`/users/${userId}`, result)
+        axios.patch(`/users/${user.id}`, result)
         .then((res) => {
             this.props.getUsers()
-            this.props.history.push(`/users/${userId}`) 
+            this.props.history.push(`/users/${user.id}`) 
         })
     }
 
