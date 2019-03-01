@@ -20,6 +20,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('project_app.urls')),
+    path('api/v1/', include('project_app.urls')),
     url(r'^$', views.FrontendAppView.as_view())
 ]
