@@ -84,11 +84,8 @@ WSGI_APPLICATION = 'projectmanager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project04r',
-        'USER': 'shelbybaker',
-        'PASSWORD': 'CodeBridge',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
